@@ -15,10 +15,9 @@ public class Disciplina extends Aluno{
     private String name,departamento;
     private char status;
     
-    
      public Disciplina(String name, String departamento, char status, int matricula, Date dataMatricula, int cargaHoraria, float valorHora, String nome, String cpf, String rg, Date dataNascimento) {
         super(matricula, dataMatricula, cargaHoraria, valorHora, nome, cpf, rg, dataNascimento);
-        this.name = name;
+        this.name = nome;
         this.departamento = departamento;
         this.status = status;
     }
