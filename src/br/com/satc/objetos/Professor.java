@@ -18,7 +18,13 @@ public class Professor extends Pessoa {
      private int cargaHoraria;
      private float valorHora,salario;
      
-     public  Float calcularSalario(float cargaHoraria, float valorHora) {
+      public Professor(int cargaHoraria,float valorHora,float salario,String nome,String cpf,String rg, Date dataNascimento ) {
+        super(nome, rg, cpf, dataNascimento, cargaHoraria);
+        this.cargaHoraria = cargaHoraria;
+        this.valorHora = valorHora;
+        this.salario = calcularSalario(cargaHoraria, valorHora);
+    }
+     public static  Float calcularSalario(float cargaHoraria, float valorHora) {
             
 	return cargaHoraria * valorHora;      
 }  
@@ -28,12 +34,7 @@ public class Professor extends Pessoa {
         return "Professor{" + "disciplina=" + disciplinas + ", cargaHoraria=" + cargaHoraria + ", valorHora=" + valorHora + ", salario=" + salario + '}';
     }
 
-    public Professor(int cargaHoraria,float valorHora,String nome,String cpf,String rg, Date dataNascimento ) {
-        super(nome, rg, cpf, dataNascimento, cargaHoraria);
-        this.cargaHoraria = cargaHoraria;
-        this.valorHora = valorHora;
-        this.salario = calcularSalario(cargaHoraria, valorHora);
-    }
+   
     public ArrayList<Disciplina> getDisciplina() {
         return disciplinas;
     }
