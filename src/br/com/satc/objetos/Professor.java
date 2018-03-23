@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class Professor extends Pessoa {
     
-     private ArrayList<Disciplina> disciplinas;
+     private ArrayList<Disciplina> disciplinas = new ArrayList<>();
      private int cargaHoraria;
      private float valorHora,salario;
      
@@ -24,7 +24,7 @@ public class Professor extends Pessoa {
         this.valorHora = valorHora;
         this.salario = calcularSalario(cargaHoraria, valorHora);
     }
-     public static  Float calcularSalario(float cargaHoraria, float valorHora) {
+     public static  Float calcularSalario(int cargaHoraria, float valorHora) {
             
 	return cargaHoraria * valorHora;      
 }  
