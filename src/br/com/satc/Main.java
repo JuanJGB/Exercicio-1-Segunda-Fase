@@ -84,13 +84,16 @@ public class Main {
                         if (JOptionPane.showConfirmDialog(null, "O professor ja trabalha em alguma disciplina? ") == 0) {
                             do {
                                 String disciplinasDisponiveis = "";
+
                                 for (Disciplina materia : materias) {
-                                 disciplinasDisponiveis += "\n" + materias.indexOf(materia) + " " + materia.getNome();
-                                 
-                                int escolhaDisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe a disciplina: \n " + disciplinasDisponiveis));
+                                    disciplinasDisponiveis += "\n" + materias.indexOf(materia) + " " + materia.getNome();
+                                    int escolhaDisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe a disciplina: \n " + disciplinasDisponiveis));
+                                    if (escolhaDisciplina != materias.indexOf(materia)) {
+                                        JOptionPane.showMessageDialog(null, "INVÁLIDO");
+                                    }else 
                                 professor.get(professor.size() - 1).getDisciplina().add(materias.get(escolhaDisciplina));
-                                }
-                            }while ((JOptionPane.showConfirmDialog(null, "O Professor possui outra disciplina? ")) == 0);
+                                } 
+                            } while ((JOptionPane.showConfirmDialog(null, "O Professor possui outra disciplina? ")) == 0);
                         }
                     } while ((JOptionPane.showConfirmDialog(null, "Deseja continuar? ") == 0));
 
@@ -100,25 +103,38 @@ public class Main {
 
                         String nome, rg, cpf;
                         String matricula;
-                        int idade ;
+                        int idade;
                         Date dataMatricula;
                         Date dataNascimento;
 
                         nome = JOptionPane.showInputDialog("Informe o nome do aluno: ");
                         rg = JOptionPane.showInputDialog("Informe o rg do aluno: ");
                         cpf = JOptionPane.showInputDialog("Informe o cpf do aluno: ");
-                        
-                        matricula =JOptionPane.showInputDialog("Informe a matrícula do aluno");
+
+                        matricula = JOptionPane.showInputDialog("Informe a matrícula do aluno");
                         dataNascimento = sdf.parse(JOptionPane.showInputDialog("Informe a data de nascimento do aluno: "));
                         dataMatricula = sdf.parse(JOptionPane.showInputDialog("Informe a data da matricula do aluno: "));
                         calculaIdade(dataNascimento);
                         idade = calculaIdade(dataNascimento);
                         aluno.add(new Aluno(matricula, dataMatricula, nome, rg, cpf, dataNascimento, idade));
+                        
+                        if (JOptionPane.showConfirmDialog(null, "O aluno já cursa em alguma disciplina? ") == 0) {
+                            do {
+                                String disciplinasDisponiveis = "";
 
+                                for (Disciplina materia : materias) {
+                                    disciplinasDisponiveis += "\n" + materias.indexOf(materia) + " " + materia.getNome();
+                                    int escolhaDisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe a disciplina: \n " + disciplinasDisponiveis));
+                                    if (escolhaDisciplina != materias.indexOf(materia)) {
+                                        JOptionPane.showMessageDialog(null, "INVÁLIDO");
+                                    }else 
+                                aluno.get(aluno.size() - 1).getDisciplina().add(materias.get(escolhaDisciplina));
+                                } 
+                            } while ((JOptionPane.showConfirmDialog(null, "O aluno possui outra disciplina? ")) == 0);
+                        }                        
                     } while ((JOptionPane.showConfirmDialog(null, "Deseja continuar? ") == 0));
                     break;
                 case 4:
-                  
                     JOptionPane.showMessageDialog(null, materias.toString());
                     break;
                 case 5:
@@ -132,7 +148,6 @@ public class Main {
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Inválido!! ");
-
             }
         } while (esc != 7);
     }
